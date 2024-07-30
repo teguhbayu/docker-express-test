@@ -5,24 +5,24 @@ phases:
     runtime-versions:
       nodejs: 20
 
-    pre_build:
-      commands:
-        - echo "prebuild"
-        - aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 852976468951.dkr.ecr.us-west-2.amazonaws.com
-        - ECR_REPO="repo-tes-lks"
-        - CONTAINER_NAME="express-app"
+  pre_build:
+    commands:
+      - echo "prebuild"
+      - aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 852976468951.dkr.ecr.us-west-2.amazonaws.com
+      - ECR_REPO="repo-tes-lks"
+      - CONTAINER_NAME="express-app"
 
-    build:
-      commands:
-        - docker build -t $ECR_REPO:latest
-        - docker tag $ECR_REPO:latest alpine/express:latest
+  build:
+    commands:
+      - docker build -t $ECR_REPO:latest
+      - docker tag $ECR_REPO:latest alpine/express:latest
 
-    post_build:
-      commands:
-        - printf '[{"name":"%s", "imageUri":"%s"}]' $CONTAINER_NAME $ECR_REPO:latest > imagedefinitions.json
-        - docker push $ECR_REPO:latest
-        - docker push alpine/express:latest
+  post_build:
+    commands:
+      - printf '[{"name":"%s", "imageUri":"%s"}]' $CONTAINER_NAME $ECR_REPO:latest > imagedefinitions.json
+      - docker push $ECR_REPO:latest
+      - docker push alpine/express:latest
 
-    artifacts:
-      files:
-        - imagedefinitions.json
+  artifacts:
+    files:
+      - imagedefinitions.json

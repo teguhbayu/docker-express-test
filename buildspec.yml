@@ -14,7 +14,7 @@ phases:
 
   build:
     commands:
-      - docker build -t $ECR_REPO:latest
+      - docker build -t $ECR_REPO:latest .
       - docker tag $ECR_REPO:latest alpine/express:latest
 
   post_build:

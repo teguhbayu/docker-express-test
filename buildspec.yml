@@ -23,6 +23,6 @@ phases:
       - docker push $ECR_REPO:latest
       - docker push alpine/express:latest
 
-  artifacts:
-    files:
-      - imagedefinitions.json
+artifacts:
+  files:
+    - imagedefinitions.json

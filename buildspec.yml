@@ -20,7 +20,7 @@ phases:
 
   post_build:
     commands:
-      - printf '[{"name":"%s", "imageUri":"%s"}]' $ECR_REPO $ECR_REPO:latest > imagedefinitions.json
+      - printf '[{"name":"%s", "imageUri":"%s"}]' aw $ECR_URI/$ECR_REPO:latest > imagedefinitions.json
       - docker push $ECR_URI/$ECR_REPO:latest
 
 artifacts:

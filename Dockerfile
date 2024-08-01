@@ -9,4 +9,4 @@ RUN npm i
 EXPOSE 5000
 
 COPY . .
-CMD ["npm", "run", "dev"]
+CMD ["node", "./index.js"]

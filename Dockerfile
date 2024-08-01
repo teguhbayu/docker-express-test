@@ -6,7 +6,7 @@ COPY package*    .
 
 RUN npm i
 
-EXPOSE 3000
+EXPOSE 5000
 
 COPY . .
 CMD ["npm", "run", "dev"]

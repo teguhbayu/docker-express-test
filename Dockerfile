@@ -1,12 +1,12 @@
 FROM node:20-alpine
 
-WORKDIR /app
+WORKDIR /usr/src/app
 
-COPY package*    .
+COPY package*.json .
 
 RUN npm i
 
-EXPOSE 5000
 
 COPY . .
-CMD ["node", "./index.js"]
+EXPOSE 5000
+CMD ["node", "start"]
